@@ -11,6 +11,8 @@ using StockApplication.Data;
 using StockApplication.Models;
 using System.Web;
 using System.Security.Claims;
+using StockApplication.Services;
+using System.Net.Http;
 
 namespace StockApplication.Controllers
 {
@@ -71,15 +73,17 @@ namespace StockApplication.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var stockData = await StockApi.GetStockData(model.Symbol);
                     var portfolio = new Portfolio
                     {
                         ID = model.ID,
                         AppUser = await _userManager.GetUserAsync(User),
                         Symbol = model.Symbol,
-                        CompanyName = model.CompanyName,
+                        CompanyName = stockData.CompanyName,
                         PurchaseDateTime = model.PurchaseDateTime,
                         AmountOfShares = model.AmountOfShares,
-                        TotalPurchasePrice = model.TotalPurchasePrice
+                        PricePerShare = model.PricePerShare,
+                        TotalPurchasePrice = model.PricePerShare * model.AmountOfShares
                     };
 
                     _context.Add(portfolio);
@@ -87,10 +91,18 @@ namespace StockApplication.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
+            catch (NullReferenceException)
+            {
+                ModelState.AddModelError("", "Unable to locate company for that symbol. Please check spelling and try again.");
+            }
             catch (DataException dex)
             {
                 Console.WriteLine(dex);
                 ModelState.AddModelError("", "Unable to save your changes.  Please try again.");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Error, Please try again.");
             }
             return View();
         }

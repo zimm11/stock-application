@@ -13,11 +13,11 @@ namespace StockApplication.Models
         public virtual AppUser AppUser { get; set; }
         [Required] 
         public string Symbol { get; set; }
-        [Required]
         public string CompanyName { get; set; }
         //public decimal CurrentPrice { get; set; }
         public DateTime? PurchaseDateTime { get; set; }
         public int? AmountOfShares { get; set; }
+        public decimal? PricePerShare { get; set; }
         public decimal? TotalPurchasePrice { get; set; }
     }
 }
