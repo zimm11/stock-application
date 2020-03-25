@@ -33,6 +33,12 @@ namespace StockApplication.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
 
             var portfolioList = await _context.Portfolios.Where(m => m.AppUser == currentUser).ToListAsync();
+            
+            foreach(var stock in portfolioList)
+            {
+                stock.CurrentPrice =  await StockApi.GetStockPrice(stock.Symbol);
+               
+            }
 
             return View(portfolioList);
         }

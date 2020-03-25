@@ -26,7 +26,13 @@
                 @Html.DisplayNameFor(model => model.AmountOfShares)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.PricePerShare)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.TotalPurchasePrice)
+            </th>
+            <th>
+                Current Price
             </th>
             <th></th>
         </tr>
@@ -45,6 +51,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AmountOfShares)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PricePerShare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPurchasePrice)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalPurchasePrice)
