@@ -1,0 +1,91 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<body class="add-background">
+    <div class="container">
+        <form class="col shadow p-3 mb-5 rounded" id="register-form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+            <!-- Login Information Creation form section -->
+            <fieldset id="registration-information">
+                <legend class="legend-header">Please enter the below information to create an account:</legend>
+                <br>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-row" id="customer-name">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.FirstName">First Name:</label>
+                        <input asp-for="Input.FirstName"  class="form-control"  placeholder="First name"/>
+                        <span asp-validation-for="Input.FirstName" class="text-danger" ></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.LastName">Last Name:</label>
+                        <input asp-for="Input.LastName" class="form-control" placeholder="Last name" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="email">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.Email">Email Address:</label>
+                        <input asp-for="Input.Email" type="email" class="form-control"  placeholder="email@example.com" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        <small id="emailHelpBlock" class="form-text text-muted">
+                            Your email must be in the format: name@example.com
+                        </small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Input.UserName">Username:</label>
+                        <input asp-for="Input.UserName" type="text" class="form-control"  placeholder="Select a username" />
+                        <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                        <small id="usernameHelpBlock" class="form-text text-muted">
+                            Please select a username, must be unique
+                        </small>
+                    </div>
+                </div>
+                <div class="form-row" id="password">
+                    <div class="form-group col-lg-12">
+                        <label asp-for="Input.Password">Password:</label>
+                        <input asp-for="Input.Password"  class="form-control"  placeholder="Please create a password"
+                               onfocus="showMessage()" onkeyup="passwordValidation()" onblur="hideMessage()" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Your password must contain a combination of 10 characters, including at least one upper and lower cases,
+                            number and special chatacter (one of: @@$!%*?&)
+                        </small>
+                    </div>
+
+                    <!-- Message box to show password requirements met and password strength meter -->
+                    <div id="message">
+                        @*<meter max="4" id="password-str-meter"></meter>*@
+                        <p id="password-str-text"></p>
+                        <h6>Password must contain the following:</h6>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="specChar" class="invalid">A <b>special characters (one of: @@$!%*?&)</b></p>
+                        <p id="length" class="invalid">Minimum <b>15 characters</b></p>
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                        <label asp-for="Input.ConfirmPassword">Password Confirmation:</label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Verify Password" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        <small id="repeatPasswordHelpBlock" class="form-text text-muted">
+                            Please re-enter your password for verification
+                        </small>
+                    </div>
+                </div>
+            </fieldset>
+
+            <button class="btn btn-primary" id="register-button" type="submit" tabindex="0">Create Account</button>
+            <br>
+            <br>
+        </form>
+    </div>
+</body>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

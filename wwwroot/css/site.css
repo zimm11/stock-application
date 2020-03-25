@@ -1,0 +1,211 @@
+﻿/**********************************************************************
+General CSS
+***********************************************************************/
+
+body {
+    /*background-image: url("/images/background.jpg") !important;*/
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    text-align: center;
+    background-color: #2F4F4F !important;
+    color: white;
+    margin-bottom: 0 !important;
+}
+
+.jumbotron {
+    margin-top: -40px !important;
+    margin-bottom: -50px !important;
+}
+
+.legend-header {
+    color: #2F4F4F !important;
+}
+
+label {
+    color: #2F4F4F !important;
+}
+
+.nav-item .nav-link {
+    color: white !important;
+}
+
+.nav-item .nav-link:hover {
+    /*background-color: lightslategrey;*/
+    color: black !important;
+}
+
+.navbar {
+    margin-bottom: 5% !important;
+    background-color: #2F4F4F !important;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #2F4F4F !important;
+    border-color: #2F4F4F !important;
+}
+
+/**********************************************************************
+CSS for each form
+***********************************************************************/
+
+#login-form, #register-form, #change-password-form, #forgot-password-form {
+    background-color: white !important;
+    opacity: 0.95;
+}
+
+/**********************************************************************
+CSS for each form
+***********************************************************************/
+
+#login-title h1 {
+    color: white;
+    font-size: 500%;
+    font-weight: bold;
+    text-align: center;
+}
+
+/**********************************************************************
+CSS for the password reset Page
+***********************************************************************/
+
+#row-email {
+    display: none;
+}
+
+/**********************************************************************
+CSS for the account management page
+***********************************************************************/
+
+.nav-pills .nav-link.active {
+    background-color: #2F4F4F;
+    color: white !important;
+}
+
+.nav-pills .nav-link {
+    color: #2F4F4F !important;
+}
+
+.nav-pills .nav-link:hover {
+    color: #2F4F4F !important;
+    background-color: lightgrey !important;
+}
+
+/**********************************************************************
+CSS for the account creation page
+***********************************************************************/
+
+#registration-information {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#register-button {
+    margin-left: 5%;
+}
+
+#register-form {
+    background-color: white;
+    opacity: 0.95;
+}
+
+meter {
+    width: 100%;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+    display: none;
+    background: white;
+    position: relative;
+    padding-left: 3%;
+}
+
+#message p {
+    /* padding: 10px 35px; */
+    font-size: 12px;
+    padding-left: 5%;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -5px;
+    content: "\2705";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -5px;
+    content: "\274C";
+}
+
+   
+
+
+/**********************************************************************
+Sticky footer styles
+***********************************************************************/
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    background-color: white;
+    opacity: .70;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
