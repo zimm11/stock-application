@@ -5,43 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="shadow p-3 mb-5 rounded">
+    <h1>Create</h1>
 
-<h4>Portfolio</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Symbol" class="control-label"></label>
-                <input asp-for="Symbol" class="form-control" />
-                <span asp-validation-for="Symbol" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CompanyName" class="control-label"></label>
-                <input asp-for="CompanyName" class="form-control" />
-                <span asp-validation-for="CompanyName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchaseDateTime" class="control-label"></label>
-                <input asp-for="PurchaseDateTime" class="form-control" />
-                <span asp-validation-for="PurchaseDateTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AmountOfShares" class="control-label"></label>
-                <input asp-for="AmountOfShares" class="form-control" />
-                <span asp-validation-for="AmountOfShares" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalPurchasePrice" class="control-label"></label>
-                <input asp-for="TotalPurchasePrice" class="form-control" />
-                <span asp-validation-for="TotalPurchasePrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4>Portfolio</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Symbol" class="control-label"></label>
+                    <input asp-for="Symbol" class="form-control" />
+                    <span asp-validation-for="Symbol" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PurchaseDateTime" class="control-label"></label>
+                    <input asp-for="PurchaseDateTime" class="form-control" />
+                    <span asp-validation-for="PurchaseDateTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AmountOfShares" class="control-label"></label>
+                    <input asp-for="AmountOfShares" class="form-control" />
+                    <span asp-validation-for="AmountOfShares" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PricePerShare" class="control-label"></label>
+                    <input asp-for="PricePerShare" class="form-control" />
+                    <span asp-validation-for="PricePerShare" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

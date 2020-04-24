@@ -11,6 +11,8 @@ using StockApplication.Data;
 using StockApplication.Models;
 using System.Web;
 using System.Security.Claims;
+using StockApplication.Services;
+using System.Net.Http;
 
 namespace StockApplication.Controllers
 {
@@ -29,10 +31,19 @@ namespace StockApplication.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
-
             var portfolioList = await _context.Portfolios.Where(m => m.AppUser == currentUser).ToListAsync();
+            var updatedList = new List<PortfolioIndexViewModel>();
+            
+            foreach(var stock in portfolioList)
+            {
+                var updatedInfo = new PortfolioIndexViewModel(stock)
+                {
+                    CurrentPrice = await StockApi.GetStockPrice(stock.Symbol)
+                };
+                updatedList.Add(updatedInfo);
+            }
 
-            return View(portfolioList);
+            return View(updatedList);
         }
 
         // GET: Portfolios/Details/5
@@ -71,26 +82,38 @@ namespace StockApplication.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var stockData = await StockApi.GetStockData(model.Symbol);
                     var portfolio = new Portfolio
                     {
                         ID = model.ID,
                         AppUser = await _userManager.GetUserAsync(User),
                         Symbol = model.Symbol,
-                        CompanyName = model.CompanyName,
+                        CompanyName = stockData.CompanyName,
                         PurchaseDateTime = model.PurchaseDateTime,
                         AmountOfShares = model.AmountOfShares,
-                        TotalPurchasePrice = model.TotalPurchasePrice
+                        PricePerShare = model.PricePerShare,
+                        TotalPurchasePrice = model.PricePerShare * model.AmountOfShares
                     };
 
                     _context.Add(portfolio);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    //return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "Portfolios");
+
                 }
+            }
+            catch (NullReferenceException)
+            {
+                ModelState.AddModelError("", "Unable to locate company for that symbol. Please check spelling and try again.");
             }
             catch (DataException dex)
             {
                 Console.WriteLine(dex);
                 ModelState.AddModelError("", "Unable to save your changes.  Please try again.");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Error, Please try again.");
             }
             return View();
         }

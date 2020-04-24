@@ -1,60 +1,76 @@
-﻿@model IEnumerable<StockApplication.Models.Portfolio>
+﻿@model IEnumerable<StockApplication.Models.PortfolioIndexViewModel>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Symbol)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PurchaseDateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AmountOfShares)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalPurchasePrice)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Symbol)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PurchaseDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AmountOfShares)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPurchasePrice)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="shadow p-3 mb-5 rounded">
+    <h1>Current Portfolio</h1>
+
+    <p>
+        <a asp-action="Create">Add new stock symbol to your portfolio.</a>
+    </p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Symbol)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PurchaseDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AmountOfShares)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PricePerShare)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalPurchasePrice)
+                </th>
+                <th>
+                    Current Price
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Symbol)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PurchaseDateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmountOfShares)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PricePerShare)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPurchasePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentPrice)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
