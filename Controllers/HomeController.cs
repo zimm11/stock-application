@@ -22,7 +22,7 @@ namespace StockApp.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Portfolios");
         }
 
         public IActionResult About()

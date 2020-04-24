@@ -3,7 +3,7 @@ General CSS
 ***********************************************************************/
 
 body {
-    /*background-image: url("/images/background.jpg") !important;*/
+    background-image: url("/images/background.jpg") !important;
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -53,13 +53,18 @@ label {
 CSS for each form
 ***********************************************************************/
 
-#login-form, #register-form, #change-password-form, #forgot-password-form {
+/*#login-form, #register-form, #change-password-form, #forgot-password-form {
+    background-color: white !important;
+    opacity: 0.95;
+}*/
+
+.shadow {
     background-color: white !important;
     opacity: 0.95;
 }
 
 /**********************************************************************
-CSS for each form
+CSS for login form
 ***********************************************************************/
 
 #login-title h1 {
@@ -108,10 +113,6 @@ CSS for the account creation page
     margin-left: 5%;
 }
 
-#register-form {
-    background-color: white;
-    opacity: 0.95;
-}
 
 meter {
     width: 100%;
@@ -153,7 +154,14 @@ meter {
     content: "\274C";
 }
 
-   
+
+/**********************************************************************
+Miscellaneous CSS
+***********************************************************************/
+
+#password-reset-confirmation {
+    color: white
+}
 
 
 /**********************************************************************

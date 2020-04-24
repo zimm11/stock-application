@@ -31,16 +31,19 @@ namespace StockApplication.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
-
             var portfolioList = await _context.Portfolios.Where(m => m.AppUser == currentUser).ToListAsync();
+            var updatedList = new List<PortfolioIndexViewModel>();
             
             foreach(var stock in portfolioList)
             {
-                stock.CurrentPrice =  await StockApi.GetStockPrice(stock.Symbol);
-               
+                var updatedInfo = new PortfolioIndexViewModel(stock)
+                {
+                    CurrentPrice = await StockApi.GetStockPrice(stock.Symbol)
+                };
+                updatedList.Add(updatedInfo);
             }
 
-            return View(portfolioList);
+            return View(updatedList);
         }
 
         // GET: Portfolios/Details/5
@@ -94,7 +97,9 @@ namespace StockApplication.Controllers
 
                     _context.Add(portfolio);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    //return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "Portfolios");
+
                 }
             }
             catch (NullReferenceException)
