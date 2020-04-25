@@ -50,9 +50,13 @@ namespace StockApplication.Services
 
             try
             {
+                decimal currentPrice;
                 string response = await Client.GetStringAsync(requestURI);
                 StockApiData stockData = JsonConvert.DeserializeObject<StockApiData>(response);
-                decimal currentPrice =  stockData.IexRealtimePrice;
+                if (stockData.IexRealtimePrice == 0)
+                    currentPrice = stockData.Close;   
+                else
+                    currentPrice =  stockData.IexRealtimePrice;
                 return currentPrice;
             }
             catch (HttpRequestException e)
@@ -73,7 +77,9 @@ namespace StockApplication.Services
     {
         public string Symbol { get; set; }
         public string CompanyName { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public decimal IexRealtimePrice { get; set; }
+        public decimal Close { get; set; }
 
     }
 }
