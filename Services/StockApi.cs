@@ -59,6 +59,12 @@ namespace StockApplication.Services
                     currentPrice =  stockData.IexRealtimePrice;
                 return currentPrice;
             }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("\nNull data, please try again");
+                Console.WriteLine($"Message: {e.Message}");
+                return 0;
+            }
             catch (HttpRequestException e)
             {
                 Console.WriteLine("\nRequest Error");
@@ -79,6 +85,7 @@ namespace StockApplication.Services
         public string CompanyName { get; set; }
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public decimal IexRealtimePrice { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public decimal Close { get; set; }
 
     }

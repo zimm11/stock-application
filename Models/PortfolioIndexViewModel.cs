@@ -16,8 +16,6 @@ namespace StockApplication.Models
             this.ID = stock.ID;
             this.Symbol = stock.Symbol;
             this.CompanyName = stock.CompanyName;
-            this.Symbol = stock.Symbol;
-            this.Symbol = stock.Symbol;
             this.PurchaseDateTime = stock.PurchaseDateTime;
             this.AmountOfShares = stock.AmountOfShares;
             this.PricePerShare = stock.PricePerShare;

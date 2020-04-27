@@ -118,7 +118,7 @@ namespace StockApplication.Controllers
             return View();
         }
 
-        // GET: Portfolios/Edit/5
+        // GET: Portfolios/Edit/
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -169,7 +169,7 @@ namespace StockApplication.Controllers
             return View(portfolio);
         }
 
-        // GET: Portfolios/Delete/5
+        // GET: Portfolios/Delete/
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -187,7 +187,7 @@ namespace StockApplication.Controllers
             return View(portfolio);
         }
 
-        // POST: Portfolios/Delete/5
+        // POST: Portfolios/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
