@@ -28,7 +28,6 @@ namespace StockApplication
 
         public IConfiguration Configuration { get; set;  }
 
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -37,6 +36,7 @@ namespace StockApplication
                     Configuration.GetConnectionString("StockApplicationDb")));
             services.AddDefaultIdentity<AppUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
 
             // To set up email password reset
             services.AddTransient<IEmailSender, EmailSender>();
